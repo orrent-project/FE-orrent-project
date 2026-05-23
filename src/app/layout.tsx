@@ -10,6 +10,9 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "OrRent",
+  icons:{
+    icon:'/assets/images/icons/orrent_logo.svg'
+  },
   description: "Rent Office",
 };
 
@@ -20,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} bg-white antialiased`}>
+      <body className={`${poppins.variable} bg-[#F7F7FD] antialiased`}>
         {children}
       </body>
     </html>
