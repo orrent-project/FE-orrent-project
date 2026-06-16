@@ -1,6 +1,8 @@
 'use client';
+import Navbar from '@/components/Navbar';
 import { Office } from '@/interfaces/Type';
 import { fetchOfficeDetails } from '@/services/office';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -16,7 +18,8 @@ const Details = () => {
 
   const base_url_image = process.env.NEXT_PUBLIC_LARAVEL_STORAGE_BASE_URL;
 
-  const loadOffices = async () => {
+  useEffect(() => {
+     const loadOffices = async () => {
     try {
       const res = await fetchOfficeDetails(String(slug));
       setOffice(res.data);
@@ -32,8 +35,6 @@ const Details = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
     loadOffices();
   }, [slug]);
 
@@ -47,41 +48,7 @@ const Details = () => {
 
   return (
     <>
-      <nav className="bg-white">
-        <div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-          <a href="index.html">
-            <img src="/assets/images/logos/logo.svg" alt="logo" />
-          </a>
-          <ul className="flex items-center gap-[50px] w-fit">
-            <li>
-              <Link href="/">Browse</Link>
-            </li>
-            <li>
-              <a href="">Popular</a>
-            </li>
-            <li>
-              <a href="">Categories</a>
-            </li>
-            <li>
-              <a href="">Events</a>
-            </li>
-            <li>
-              <a href="view-booking-details.html">My Booking</a>
-            </li>
-          </ul>
-          <a
-            href="#"
-            className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5"
-          >
-            <img
-              src="/assets/images/icons/call.svg"
-              className="w-6 h-6"
-              alt="icon"
-            />
-            <span className="font-semibold">Contact Us</span>
-          </a>
-        </div>
-      </nav>
+      <Navbar />
       <section id="Gallery" className="-mb-[50px]">
         <div className="swiper w-full">
           <Swiper
@@ -94,10 +61,13 @@ const Details = () => {
           >
             <SwiperSlide className="swiper-slide !w-fit">
               <div className="w-[700px] h-[550px] overflow-hidden">
-                <img
+                <Image
                   src={`${base_url_image}/${office.thumbnail}`}
-                  className="w-full h-full object-cover"
+                  className="object-cover"
                   alt="thumbnail"
+                  width={700}
+                  height={550}
+                  unoptimized
                 />
               </div>
             </SwiperSlide>
@@ -105,10 +75,13 @@ const Details = () => {
               return (
                 <SwiperSlide key={photo.id} className="swiper-slide !w-fit">
                   <div className="w-[700px] h-[550px] overflow-hidden">
-                    <img
+                    <Image
                       src={`${base_url_image}/${photo.photo}`}
-                      className="w-full h-full object-cover"
+                      className="object-cover"
                       alt="thumbnail"
+                      width={700}
+                      height={550}
+                      unoptimized
                     />
                   </div>
                 </SwiperSlide>
@@ -131,40 +104,46 @@ const Details = () => {
                 {office.name}
               </h1>
               <div className="flex items-center gap-[6px] mt-[10px]">
-                <img
+                <Image
                   src="/assets/images/icons/location.svg"
-                  className="w-6 h-6"
                   alt="icon"
+                  width={24}
+                  height={24}
                 />
                 <p className="font-semibold">{office.city.name}</p>
               </div>
             </div>
             <div className="flex flex-col gap-[6px]">
               <div className="flex items-center gap-1">
-                <img
+                <Image
                   src="/assets/images/icons/Star 1.svg"
-                  className="w-5 h-5"
                   alt="star"
+                  width={20}
+                  height={20}
                 />
-                <img
+                <Image
                   src="/assets/images/icons/Star 1.svg"
-                  className="w-5 h-5"
                   alt="star"
+                  width={20}
+                  height={20}
                 />
-                <img
+                <Image
                   src="/assets/images/icons/Star 1.svg"
-                  className="w-5 h-5"
                   alt="star"
+                  width={20}
+                  height={20}
                 />
-                <img
+                <Image
                   src="/assets/images/icons/Star 1.svg"
-                  className="w-5 h-5"
                   alt="star"
+                  width={20}
+                  height={20}
                 />
-                <img
+                <Image
                   src="/assets/images/icons/Star 5.svg"
-                  className="w-5 h-5"
                   alt="star"
+                  width={20}
+                  height={20}
                 />
               </div>
               <p className="font-semibold text-right">4.5/5 (19,384)</p>
@@ -175,10 +154,11 @@ const Details = () => {
           <h2 className="font-bold">You Get What You Need Most</h2>
           <div className="grid grid-cols-3 gap-x-5 gap-y-[30px]">
             <div className="flex items-center gap-4">
-              <img
+              <Image
                 src="/assets/images/icons/security-user.svg"
-                className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
               <div className="flex flex-col gap-[2px]">
                 <p className="font-bold text-lg leading-[24px]">Privacy</p>
@@ -186,10 +166,11 @@ const Details = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <img
+              <Image
                 src="/assets/images/icons/cup.svg"
-                className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
               <div className="flex flex-col gap-[2px]">
                 <p className="font-bold text-lg leading-[24px]">Global Event</p>
@@ -197,10 +178,11 @@ const Details = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <img
+              <Image
                 src="/assets/images/icons/home-trend-up.svg"
-                className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
               <div className="flex flex-col gap-[2px]">
                 <p className="font-bold text-lg leading-[24px]">
@@ -210,10 +192,11 @@ const Details = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <img
+              <Image
                 src="/assets/images/icons/coffee.svg"
-                className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
               <div className="flex flex-col gap-[2px]">
                 <p className="font-bold text-lg leading-[24px]">Extra Snacks</p>
@@ -221,10 +204,11 @@ const Details = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <img
+              <Image
                 src="/assets/images/icons/3dcube.svg"
-                className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
               <div className="flex flex-col gap-[2px]">
                 <p className="font-bold text-lg leading-[24px]">Compact</p>
@@ -232,10 +216,11 @@ const Details = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <img
+              <Image
                 src="/assets/images/icons/group.svg"
-                className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
               <div className="flex flex-col gap-[2px]">
                 <p className="font-bold text-lg leading-[24px]">Free Move</p>
@@ -284,10 +269,11 @@ const Details = () => {
               {office.benefits.map((benefit) => {
                 return (
                   <div key={benefit.id} className="flex items-center gap-3">
-                    <img
+                    <Image
                       src="/assets/images/icons/verify.svg"
-                      className="w-[30px] h-[30px]"
                       alt="icon"
+                      width={30}
+                      height={30}
                     />
                     <p className="font-semibold leading-[28px]">
                       {benefit.name}
@@ -299,22 +285,24 @@ const Details = () => {
             <hr className="border-[#F6F5FD]" />
             <div className="flex flex-col gap-[14px]">
               <Link href={`/office/${office.slug}/book`}>
-              <div
-                className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]"
-              >
-                <img
-                  src="/assets/images/icons/slider-horizontal-white.svg"
-                  className="w-6 h-6"
-                  alt="icon"
-                />
-                <span>Book This Office</span>
-              </div>
+                <div
+                  className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]"
+                >
+                  <Image
+                    src="/assets/images/icons/slider-horizontal-white.svg"
+                    alt="icon"
+                    width={24}
+                    height={24}
+                  />
+                  <span>Book This Office</span>
+                </div>
               </Link>
               <button className="flex items-center justify-center w-full rounded-full border border-[#000929] p-[16px_26px] gap-3 bg-white font-semibold">
-                <img
+                <Image
                   src="/assets/images/icons/save-add.svg"
-                  className="w-6 h-6"
                   alt="icon"
+                  width={24}
+                  height={24}
                 />
                 <span>Save for Later</span>
               </button>
@@ -326,10 +314,12 @@ const Details = () => {
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-4">
                   <div className="w-[60px] h-[60px] rounded-full overflow-hidden">
-                    <img
+                    <Image
                       src="/assets/images/photos/photo-1.png"
-                      className="w-full h-full object-cover"
+                      className="object-cover"
                       alt="photo"
+                      width={60}
+                      height={60}
                     />
                   </div>
                   <div className="flex flex-col gap-[2px]">
@@ -339,17 +329,19 @@ const Details = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <a href="#">
-                    <img
+                    <Image
                       src="/assets/images/icons/call-green.svg"
-                      className="w-10 h-10"
                       alt="icon"
+                      width={40}
+                      height={40}
                     />
                   </a>
                   <a href="#">
-                    <img
+                    <Image
                       src="/assets/images/icons/chat-green.svg"
-                      className="w-10 h-10"
                       alt="icon"
+                      width={40}
+                      height={40}
                     />
                   </a>
                 </div>
@@ -357,10 +349,12 @@ const Details = () => {
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-4">
                   <div className="w-[60px] h-[60px] rounded-full overflow-hidden">
-                    <img
+                    <Image
                       src="/assets/images/photos/photo-2.png"
-                      className="w-full h-full object-cover"
+                      className="object-cover"
                       alt="photo"
+                      width={60}
+                      height={60}
                     />
                   </div>
                   <div className="flex flex-col gap-[2px]">
@@ -370,17 +364,19 @@ const Details = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <a href="#">
-                    <img
+                    <Image
                       src="/assets/images/icons/call-green.svg"
-                      className="w-10 h-10"
                       alt="icon"
+                      width={40}
+                      height={40}
                     />
                   </a>
                   <a href="#">
-                    <img
+                    <Image
                       src="/assets/images/icons/chat-green.svg"
-                      className="w-10 h-10"
                       alt="icon"
+                      width={40}
+                      height={40}
                     />
                   </a>
                 </div>

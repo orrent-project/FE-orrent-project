@@ -1,19 +1,28 @@
-import { ApiErrorResponse, AxiosErrorLike } from "@/interfaces/IErrorHandler";
+import axios from "axios";
+import { ApiErrorResponse } from "@/interfaces/IErrorHandler";
 
 export function handleApiError(error: unknown, fallbackMessage: string): never {
-  if (
-    typeof error === "object" &&
-    error !== null &&
-    "response" in error
-  ) {
-    const err = error as AxiosErrorLike;
-    const data = err.response?.data;
+  if (axios.isAxiosError(error)) {
+    const msg = error.message;
+    const code = error.code;
+    const data = error.response?.data;
+
+    if (
+      code === "ECONNABORTED" ||
+      msg.toLowerCase().includes("timeout")
+    ) {
+      throw new Error("Request timed out (10s)");
+    }
 
     if (data && typeof data === "object" && !Array.isArray(data)) {
       const errorData = data as ApiErrorResponse;
 
-      if (Array.isArray(errorData.errors) && errorData.errors.length > 0) {
-        throw new Error(errorData?.errors[0]?.msg || fallbackMessage);
+      if (errorData.errors) {
+        const firstError = Object.values(errorData.errors)[0]?.[0];
+
+        if (firstError) {
+          throw new Error(firstError);
+        }
       }
 
       if (typeof errorData.message === "string") {
@@ -26,6 +35,9 @@ export function handleApiError(error: unknown, fallbackMessage: string): never {
     }
   }
 
-  console.error("Unhandled error structure:", error);
+  if (error instanceof Error) {
+    throw new Error(error.message);
+  }
+
   throw new Error(fallbackMessage);
 }

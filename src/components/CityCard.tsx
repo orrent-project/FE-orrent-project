@@ -1,5 +1,5 @@
 import { City } from '@/interfaces/Type';
-import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
 
 interface CityCardProps {
@@ -18,9 +18,10 @@ const CityCard = ({ city }: CityCardProps) => {
             </h3>
             <p className="text-white">{city.officeSpaces_count} Offices</p>
           </div>
-          <img
+          <Image
             src={`${base_url_storage}/${city.photo}`}
-            className="absolute w-full h-full object-cover"
+            className="absolute object-cover"
+            fill
             alt="thumbnails"
           />
         </div>

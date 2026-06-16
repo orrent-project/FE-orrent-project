@@ -13,7 +13,7 @@ const BrowseOfficeWrapper = () => {
   const loadOffice = async () => {
     try {
       const res = await fetchAllOffices();
-      setOffices(res.data);
+      setOffices(res);
     } catch (error) {
       if (error instanceof Error) {
         console.error({ message: error.message, type: 'danger' });

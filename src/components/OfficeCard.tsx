@@ -1,4 +1,5 @@
 import { Office } from '@/interfaces/Type';
+import Image from 'next/image';
 import React from 'react';
 
 interface OfficeCardProps{
@@ -15,9 +16,11 @@ const OfficeCard = ({office}:OfficeCardProps) => {
             <p className="absolute top-5 left-5 w-fit rounded-full p-[6px_16px] bg-[#0D903A] font-bold text-sm leading-[21px] text-[#F7F7FD]">
               Popular
             </p>
-            <img
+            <Image
               src={`${base_url_storage}/${office.thumbnail}`}
-              className="w-full h-full object-cover"
+              className="object-cover"
+              fill
+              unoptimized
               alt="thumbnails"
             />
           </div>
@@ -31,47 +34,52 @@ const OfficeCard = ({office}:OfficeCardProps) => {
               </p>
               <div className="flex items-center justify-end gap-[6px]">
                 <p className="font-semibold">{office.duration} days</p>
-                <img
+                <Image
                   src="/assets/images/icons/clock.svg"
-                  className="w-6 h-6"
                   alt="icon"
+                  width={24}
+                  height={24}
                 />
               </div>
             </div>
             <hr className="border-[#F6F5FD]" />
             <div className="flex items-center justify-between">
               <div className="flex items-center justify-end gap-[6px]">
-                <img
+                <Image
                   src="/assets/images/icons/location.svg"
-                  className="w-6 h-6"
                   alt="icon"
+                  width={24}
+                  height={24}
                 />
                 <p className="font-semibold">{office.city.name}</p>
               </div>
               <div className="flex items-center justify-end gap-[6px]">
                 <p className="font-semibold">4.5/5</p>
-                <img
+                <Image
                   src="/assets/images/icons/Star 1.svg"
-                  className="w-6 h-6"
                   alt="icon"
+                  width={24}
+                  height={24}
                 />
               </div>
             </div>
             <hr className="border-[#F6F5FD]" />
             <div className="flex items-center justify-between">
               <div className="flex items-center justify-end gap-[6px]">
-                <img
+                <Image
                   src="/assets/images/icons/wifi.svg"
-                  className="w-6 h-6"
                   alt="icon"
+                  width={24}
+                  height={24}
                 />
                 <p className="font-semibold">Fast-Connection</p>
               </div>
               <div className="flex items-center justify-end gap-[6px]">
-                <img
+                <Image
                   src="/assets/images/icons/security-user.svg"
-                  className="w-6 h-6"
                   alt="icon"
+                  width={24}
+                  height={24}
                 />
                 <p className="font-semibold">Secure 100%</p>
               </div>

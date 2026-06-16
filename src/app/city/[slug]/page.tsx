@@ -5,6 +5,8 @@ import { City } from '@/interfaces/Type';
 import { useParams } from 'next/navigation';
 import { fetchCityDetails } from '@/services/city';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
+import Image from 'next/image';
 
 const CityDetails = () => {
   const { slug } = useParams() as { slug: string };
@@ -14,24 +16,24 @@ const CityDetails = () => {
   const [error, setError] = useState<string | null>(null);
   const base_url_storage = process.env.NEXT_PUBLIC_LARAVEL_STORAGE_BASE_URL;
 
-  const loadCity = async () => {
-    try {
-      const res = await fetchCityDetails(String(slug));
-      setCity(res.data);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error({ message: error.message, type: 'danger' });
-        setError(error.message);
-      } else {
-        console.error({ message: 'Terjadi Kesalahan', type: 'danger' });
-        setError('Terjadi Kesalahan');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   useEffect(() => {
+    const loadCity = async () => {
+      try {
+        const res = await fetchCityDetails(String(slug));
+        setCity(res.data);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("Terjadi Kesalahan");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
     loadCity();
   }, [slug]);
 
@@ -44,41 +46,7 @@ const CityDetails = () => {
   }
   return (
     <>
-      <nav className="bg-white">
-        <div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-          <a href="index.html">
-            <img src="/assets/images/logos/logo.svg" alt="logo" />
-          </a>
-          <ul className="flex items-center gap-[50px] w-fit">
-            <li>
-              <Link href="/">Browse</Link>
-            </li>
-            <li>
-              <a href="">Popular</a>
-            </li>
-            <li>
-              <a href="">Categories</a>
-            </li>
-            <li>
-              <a href="">Events</a>
-            </li>
-            <li>
-              <a href="view-booking-details.html">My Booking</a>
-            </li>
-          </ul>
-          <a
-            href="#"
-            className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5"
-          >
-            <img
-              src="/assets/images/icons/call.svg"
-              className="w-6 h-6"
-              alt="icon"
-            />
-            <span className="font-semibold">Contact Us</span>
-          </a>
-        </div>
-      </nav>
+      <Navbar />
       <header className="flex flex-col w-full">
         <section id="Hero-Banner" className="relative flex h-[434px]">
           <div
@@ -98,11 +66,14 @@ const CityDetails = () => {
             id="Hero-Image"
             className="absolute right-0 w-[calc(100%-((100%-1130px)/2)-305px)] h-[434px] rounded-bl-[40px] overflow-hidden"
           >
-            <img
-              src={`${base_url_storage}/${city.photo}`}
-              className="w-full h-full object-cover"
-              alt="hero background"
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={`${base_url_storage}/${city.photo}`}
+                className="object-cover"
+                fill
+                alt="hero background"
+              />
+            </div>
           </div>
         </section>
       </header>

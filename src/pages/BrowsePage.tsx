@@ -1,46 +1,14 @@
 'use client';
+import Navbar from '@/components/Navbar';
 import BrowseCityWrapper from '@/wrappers/BrowseCityWrapper';
 import BrowseOfficeWrapper from '@/wrappers/BrowseOfficeWrapper';
+import Image from 'next/image';
 import React from 'react';
 
 const BrowsePage = () => {
   return (
     <div className="flex flex-col w-full">
-      <nav className="bg-white">
-        <div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-          <a href="index.html">
-            <img src="/assets/images/logos/logo.svg" alt="logo" />
-          </a>
-          <ul className="flex items-center gap-[50px] w-fit">
-            <li>
-              <a href="">Browse</a>
-            </li>
-            <li>
-              <a href="">Popular</a>
-            </li>
-            <li>
-              <a href="">Categories</a>
-            </li>
-            <li>
-              <a href="">Events</a>
-            </li>
-            <li>
-              <a href="view-booking-details.html">My Booking</a>
-            </li>
-          </ul>
-          <a
-            href="#"
-            className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5"
-          >
-            <img
-              src="/assets/images/icons/call.svg"
-              className="w-6 h-6"
-              alt="icon"
-            />
-            <span className="font-semibold">Contact Us</span>
-          </a>
-        </div>
-      </nav>
+      <Navbar/>
 
       <header className="flex flex-col w-full">
         <section
@@ -52,10 +20,11 @@ const BrowsePage = () => {
             className="relative flex flex-col w-full max-w-[650px] h-fit rounded-[30px] border border-[#E0DEF7] p-10 gap-[30px] bg-white mt-[70px] ml-[calc((100%-1130px)/2)] z-10"
           >
             <div className="flex items-center w-fit rounded-full py-2 px-4 gap-[10px] bg-[#000929]">
-              <img
+              <Image
                 src="/assets/images/icons/crown-white.svg"
-                className="w-5 h-5"
                 alt="icon"
+                width={20}
+                height={20}
               />
               <span className="font-semibold text-white">
                 We’ve won top productivity 500 fortunes
@@ -75,10 +44,11 @@ const BrowsePage = () => {
                 href="#"
                 className="flex items-center rounded-full p-[20px_26px] gap-3 bg-[#0D903A]"
               >
-                <img
+                <Image
                   src="/assets/images/icons/slider-horizontal-white.svg"
-                  className="w-[30px] h-[30px]"
                   alt="icon"
+                  width={30}
+                height={30}
                 />
                 <span className="font-bold text-xl leading-[30px] text-[#F7F7FD]">
                   Explore Now
@@ -88,10 +58,11 @@ const BrowsePage = () => {
                 href="#"
                 className="flex items-center rounded-full border border-[#000929] p-[20px_26px] gap-3 bg-white"
               >
-                <img
+                <Image
                   src="/assets/images/icons/video-octagon.svg"
-                  className="w-[30px] h-[30px]"
                   alt="icon"
+                  width={30}
+                height={30}
                 />
                 <span className="font-semibold text-xl leading-[30px]">
                   Watch Story
@@ -101,26 +72,30 @@ const BrowsePage = () => {
           </div>
           <div
             id="Hero-Image"
-            className="absolute right-0 w-[calc(100%-((100%-1130px)/2)-305px)] h-[720px] rounded-bl-[40px] overflow-hidden"
+            className="absolute right-0 w-[70%] h-[720px] rounded-bl-[40px] overflow-hidden"
           >
-            <img
+            <Image
               src="/assets/images/backgrounds/banner.png"
-              className="w-full h-full object-cover"
+              className="object-cover"
+              width={1200}
+              height={720}
               alt="hero background"
             />
           </div>
         </section>
         <div className="flex flex-col pt-[150px] pb-10 px-[120px] gap-10 bg-[#0D903A]">
           <div className="logo-contianer flex items-center justify-center flex-wrap max-w-[1130px] h-[38px] mx-auto gap-[60px]">
-            <img src="/assets/images/logos/TESLA.svg" alt="clients logo" />
-            <img src="/assets/images/logos/Libra 2.svg" alt="clients logo" />
-            <img
+            <Image src="/assets/images/logos/TESLA.svg" width={125} height={24} alt="clients logo" />
+            <Image src="/assets/images/logos/Libra 2.svg" width={96} height={38} alt="clients logo" />
+            <Image
               src="/assets/images/logos/Binance logo.svg"
+              width={177} height={36}
               alt="clients logo"
             />
-            <img src="/assets/images/logos/Facebook 7.svg" alt="clients logo" />
-            <img
+            <Image src="/assets/images/logos/Facebook 7.svg" width={145} height={28} alt="clients logo" />
+            <Image
               src="/assets/images/logos/Microsoft 6.svg"
+              width={141} height={30}
               alt="clients logo"
             />
           </div>
@@ -172,10 +147,12 @@ const BrowsePage = () => {
         <div className="grid grid-cols-2 gap-[30px]">
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-              <img
+              <Image
                 src="/assets/images/icons/security-user.svg"
                 className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
             </div>
             <div className="flex flex-col gap-[5px]">
@@ -189,10 +166,12 @@ const BrowsePage = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-              <img
+              <Image
                 src="/assets/images/icons/group.svg"
                 className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
             </div>
             <div className="flex flex-col gap-[5px]">
@@ -206,10 +185,12 @@ const BrowsePage = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-              <img
+              <Image
                 src="/assets/images/icons/3dcube.svg"
                 className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
             </div>
             <div className="flex flex-col gap-[5px]">
@@ -223,10 +204,12 @@ const BrowsePage = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-              <img
+              <Image
                 src="/assets/images/icons/cup.svg"
                 className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
             </div>
             <div className="flex flex-col gap-[5px]">
@@ -240,10 +223,12 @@ const BrowsePage = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-              <img
+              <Image
                 src="/assets/images/icons/coffee.svg"
                 className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
             </div>
             <div className="flex flex-col gap-[5px]">
@@ -257,10 +242,12 @@ const BrowsePage = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center justify-center shrink-0 w-[70px] h-[70px] rounded-[23px] bg-white overflow-hidden">
-              <img
+              <Image
                 src="/assets/images/icons/home-trend-up.svg"
                 className="w-[34px] h-[34px]"
                 alt="icon"
+                width={34}
+                height={34}
               />
             </div>
             <div className="flex flex-col gap-[5px]">
